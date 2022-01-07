@@ -15,7 +15,7 @@ URL='https://store.ui.com/collections/unifi-network-unifi-os-consoles/products/u
 
 parser = argparse.ArgumentParser(description='email if UDM is in stock')
 parser.add_argument('--email', type=str)
-parser.add_argument('--telegram', action="store_true")
+parser.add_argument('--telegram', nargs="?", const="~/.config/telegram-send.conf", type=str)
 args = parser.parse_args()
 
 options = FirefoxOptions()
@@ -52,7 +52,7 @@ if status == "In Stock":
         s.quit()
     elif args.telegram:
         try:
-            telegram_send.send(messages=[subjectLine,URL])
+            telegram_send.send(messages=[subjectLine,URL], conf=args.telegram)
         except telegram_send.ConfigError:
             print("telegram-send not configured. Please run telegram-send --configure")
 
