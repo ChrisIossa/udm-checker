@@ -34,7 +34,7 @@ status = soup.find(class_='comProduct__badge').getText()
 now = datetime.now()
 print(f'{now.strftime("%d/%m/%Y %H:%M:%S")} - {status}')
 
-subjectLine = "The Ubiquity Dream Machine is in stock!"
+subjectLine = "The Ubiquiti Dream Machine is in stock!"
 
 if status == "In Stock":
     if args.email:
