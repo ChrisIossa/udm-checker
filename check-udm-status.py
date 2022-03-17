@@ -27,6 +27,7 @@ driver.get(URL)
 
 html = driver.page_source
 driver.close()
+driver.quit()
 
 soup = BeautifulSoup(html, 'html.parser')
 status = soup.find(class_='comProduct__badge').getText()
@@ -36,7 +37,7 @@ print(f'{now.strftime("%d/%m/%Y %H:%M:%S")} - {status}')
 
 subjectLine = "The Ubiquiti Dream Machine is in stock!"
 
-if status == "In Stock":
+if status == "In-Stock":
     if args.email:
         msg = EmailMessage()
         msg['Subject'] = subjectLine
